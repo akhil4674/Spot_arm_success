@@ -1,0 +1,410 @@
+[0KRunning with gitlab-runner 15.10.1 (dcfb4b66)[0;m
+[0K  on ids-ci-runner-01 TCNxsJup, system ID: s_9b242e4b9fd5[0;m
+section_start:1698915512:prepare_executor
+[0K[0K[36;1mPreparing the "docker" executor[0;m[0;m
+[0KUsing Docker executor with image ids-git.fzi.de:5555/continuous_integration/ci_docker_images/ubuntu_22.04_ros2:rolling ...[0;m
+[0KAuthenticating with credentials from job payload (GitLab Registry)[0;m
+[0KPulling docker image ids-git.fzi.de:5555/continuous_integration/ci_docker_images/ubuntu_22.04_ros2:rolling ...[0;m
+[0KUsing docker image sha256:29650771b4104d3276ec995e62e89af7fa47b20917c7e9e34ed731b965512d6d for ids-git.fzi.de:5555/continuous_integration/ci_docker_images/ubuntu_22.04_ros2:rolling with digest ids-git.fzi.de:5555/continuous_integration/ci_docker_images/ubuntu_22.04_ros2@sha256:06dfbc9e512dc63d44e54d6658fc55c0834e40c2cf8cacd300aaa2dd11356345 ...[0;m
+section_end:1698915519:prepare_executor
+[0Ksection_start:1698915519:prepare_script
+[0K[0K[36;1mPreparing environment[0;m[0;m
+Running on runner-tcnxsjup-project-6050-concurrent-0 via ids-ci-runner-01...
+section_end:1698915520:prepare_script
+[0Ksection_start:1698915520:get_sources
+[0K[0K[36;1mGetting source from Git repository[0;m[0;m
+[32;1mFetching changes with git depth set to 20...[0;m
+Initialized empty Git repository in /builds/sq411/ros-2-spot-arm-status-2/.git/
+[32;1mCreated fresh repository.[0;m
+[32;1mChecking out 4aea72c7 as detached HEAD (ref is main)...[0;m
+
+[32;1mSkipping Git submodules setup[0;m
+section_end:1698915526:get_sources
+[0Ksection_start:1698915526:step_script
+[0K[0K[36;1mExecuting "step_script" stage of the job script[0;m[0;m
+[0KUsing docker image sha256:29650771b4104d3276ec995e62e89af7fa47b20917c7e9e34ed731b965512d6d for ids-git.fzi.de:5555/continuous_integration/ci_docker_images/ubuntu_22.04_ros2:rolling with digest ids-git.fzi.de:5555/continuous_integration/ci_docker_images/ubuntu_22.04_ros2@sha256:06dfbc9e512dc63d44e54d6658fc55c0834e40c2cf8cacd300aaa2dd11356345 ...[0;m
+[32;1m$ if [[ -z ${CI_SCRIPTS_BRANCH} ]]; then git clone ${CI_SCRIPTS_REPO} ${HOME}/ci_scripts; fi[0;m
+Cloning into '/root/ci_scripts'...
+warning: redirecting to https://ids-git.fzi.de/continuous_integration/ci_scripts.git/
+[32;1m$ if [[ -n ${CI_SCRIPTS_BRANCH} ]]; then git clone ${CI_SCRIPTS_REPO} ${HOME}/ci_scripts -b ${CI_SCRIPTS_BRANCH}; fi[0;m
+[32;1m$ export NOT_TEST_BUILD=$([[ "$DO_TEST" == "false" ]] && echo "true" || echo "$NOT_TEST_BUILD")[0;m
+[32;1m$ git clone --quiet --depth 1 https://github.com/ros-industrial/industrial_ci .industrial_ci -b master[0;m
+[32;1m$ if [[ ! -z "$UPSTREAM_WORKSPACE" ]]; then [[ -f "${CI_PROJECT_DIR}/${UPSTREAM_WORKSPACE}" ]] && sed -i 's/git@ids-git\.fzi\.de\:/https\:\/\/gitlab-ci-token\:'${CI_JOB_TOKEN}'@ids-git\.fzi\.de\//g' ${CI_PROJECT_DIR}/${UPSTREAM_WORKSPACE} && sed -i 's/https\:\/\/ids-git\.fzi\.de/https\:\/\/gitlab-ci-token\:'${CI_JOB_TOKEN}'@ids-git\.fzi\.de/g' ${CI_PROJECT_DIR}/${UPSTREAM_WORKSPACE}; fi[0;m
+[32;1m$ if [[ ! -z "$DOWNSTREAM_WORKSPACE" ]]; then [[ -f "${CI_PROJECT_DIR}/${DOWNSTREAM_WORKSPACE}" ]] && sed -i 's/git@ids-git\.fzi\.de\:/https\:\/\/gitlab-ci-token\:'${CI_JOB_TOKEN}'@ids-git\.fzi\.de\//g' ${CI_PROJECT_DIR}/${DOWNSTREAM_WORKSPACE} && sed -i 's/https\:\/\/ids-git\.fzi\.de/https\:\/\/gitlab-ci-token\:'${CI_JOB_TOKEN}'@ids-git\.fzi\.de/g' ${CI_PROJECT_DIR}/${DOWNSTREAM_WORKSPACE}; fi[0;m
+[32;1m$ apt-get update[0;m
+Get:1 http://ids-volvo.fzi.de/debs jammy InRelease [1787 B]
+Get:2 http://ids-ubuntu-testing.fzi.de:8000/public/general jammy InRelease [3935 B]
+Get:3 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+Get:4 http://apt.llvm.org/jammy llvm-toolchain-jammy-13 InRelease [6827 B]
+Get:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]
+Get:6 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  InRelease [1581 B]
+Get:7 http://ids-volvo.fzi.de/debs jammy/ids amd64 Packages [960 B]
+Get:8 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [109 kB]
+Get:9 http://packages.ros.org/ros2/ubuntu jammy InRelease [4682 B]
+Get:10 http://ids-ubuntu-testing.fzi.de:8000/public/general jammy/main amd64 Packages [82.2 kB]
+Get:11 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1395 kB]
+Get:13 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [129 kB]
+Get:14 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [217 kB]
+Get:15 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [14.1 MB]
+Get:16 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  Packages [591 kB]
+Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [998 kB]
+Get:18 http://apt.llvm.org/jammy llvm-toolchain-jammy-13/main amd64 Packages [10.6 kB]
+Get:19 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [1148 kB]
+Get:20 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [41.6 kB]
+Get:21 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [1103 kB]
+Get:22 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [27.8 kB]
+Get:23 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [64.2 kB]
+Get:24 http://packages.ros.org/ros2/ubuntu jammy/main amd64 Packages [1393 kB]
+Get:25 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [940 kB]
+Get:26 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [1083 kB]
+Get:27 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [36.5 kB]
+Get:28 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [796 kB]
+Fetched 24.8 MB in 3s (8517 kB/s)
+Reading package lists...
+[32;1m$ apt-get install -y python3-coverage gcovr[0;m
+Reading package lists...
+Building dependency tree...
+Reading state information...
+python3-coverage is already the newest version (6.2+dfsg1-2build1).
+python3-coverage set to manually installed.
+The following additional packages will be installed:
+  python-babel-localedata python3-babel python3-jinja2 python3-markupsafe
+  python3-tz
+Suggested packages:
+  python-jinja2-doc
+The following NEW packages will be installed:
+  gcovr python-babel-localedata python3-babel python3-jinja2
+  python3-markupsafe python3-tz
+0 upgraded, 6 newly installed, 0 to remove and 2 not upgraded.
+Need to get 5266 kB of archives.
+After this operation, 28.4 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 python-babel-localedata all 2.8.0+dfsg.1-7 [4982 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 python3-tz all 2022.1-1ubuntu0.22.04.1 [30.7 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy/main amd64 python3-babel all 2.8.0+dfsg.1-7 [85.1 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy/main amd64 python3-markupsafe amd64 2.0.1-2build1 [12.7 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy/main amd64 python3-jinja2 all 3.0.3-1 [108 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy/universe amd64 gcovr all 5.0-2 [47.2 kB]
+Fetched 5266 kB in 0s (51.0 MB/s)
+Selecting previously unselected package python-babel-localedata.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 88645 files and directories currently installed.)
+Preparing to unpack .../0-python-babel-localedata_2.8.0+dfsg.1-7_all.deb ...
+Unpacking python-babel-localedata (2.8.0+dfsg.1-7) ...
+Selecting previously unselected package python3-tz.
+Preparing to unpack .../1-python3-tz_2022.1-1ubuntu0.22.04.1_all.deb ...
+Unpacking python3-tz (2022.1-1ubuntu0.22.04.1) ...
+Selecting previously unselected package python3-babel.
+Preparing to unpack .../2-python3-babel_2.8.0+dfsg.1-7_all.deb ...
+Unpacking python3-babel (2.8.0+dfsg.1-7) ...
+Selecting previously unselected package python3-markupsafe.
+Preparing to unpack .../3-python3-markupsafe_2.0.1-2build1_amd64.deb ...
+Unpacking python3-markupsafe (2.0.1-2build1) ...
+Selecting previously unselected package python3-jinja2.
+Preparing to unpack .../4-python3-jinja2_3.0.3-1_all.deb ...
+Unpacking python3-jinja2 (3.0.3-1) ...
+Selecting previously unselected package gcovr.
+Preparing to unpack .../5-gcovr_5.0-2_all.deb ...
+Unpacking gcovr (5.0-2) ...
+Setting up python3-markupsafe (2.0.1-2build1) ...
+Setting up python3-tz (2022.1-1ubuntu0.22.04.1) ...
+Setting up python-babel-localedata (2.8.0+dfsg.1-7) ...
+Setting up python3-babel (2.8.0+dfsg.1-7) ...
+update-alternatives: using /usr/bin/pybabel-python3 to provide /usr/bin/pybabel (pybabel) in auto mode
+Setting up python3-jinja2 (3.0.3-1) ...
+Setting up gcovr (5.0-2) ...
+Processing triggers for man-db (2.10.2-1) ...
+[32;1m$ export CATKIN_TEST_COVERAGE=1[0;m
+[32;1m$ export CMAKE_ARGS="-DENABLE_COVERAGE_TESTING=ON -DCMAKE_BUILD_TYPE=Debug"[0;m
+[32;1m$ .industrial_ci/gitlab.sh[0;m
+Running test 'source_tests'
+
+section_start:1698915546:init[collapsed=true]
+[0K[34minit[0m
+
+[1m$ sudo sed -i /^# deb.*multiverse/ s/^# // /etc/apt/sources.list[0m
+
+[1m$ sudo apt-get update -qq[0m
+
+[1m$ sudo apt-get -qq install -y --no-upgrade --no-install-recommends apt-utils build-essential gnupg2 dirmngr ca-certificates | grep -E 'Setting up' [0m
+Setting up gnupg2 (2.2.27-3ubuntu2.1) ...
+[32msection_end:1698915553:init
+[0K[32m'init' returned with code '0' after 0 min 6 sec[0m
+
+section_start:1698915553:colcon_setup[collapsed=true]
+[0K[34mcolcon_setup[0m
+[32msection_end:1698915553:colcon_setup
+[0K[32m'colcon_setup' returned with code '0' after 0 min 0 sec[0m
+
+section_start:1698915553:setup_rosdep[collapsed=true]
+[0K[34msetup_rosdep[0m
+
+[1m$ sudo apt-get -qq install -y --no-upgrade --no-install-recommends ros-rolling-ros-environment | grep -E 'Setting up' [0m
+
+[1m$ rosdep update > /dev/null [0m
+[32msection_end:1698915562:setup_rosdep
+[0K[32m'setup_rosdep' returned with code '0' after 0 min 9 sec[0m
+
+section_start:1698915562:setup_target_workspace[collapsed=true]
+[0K[34msetup_target_workspace[0m
+Copying '/builds/sq411/ros-2-spot-arm-status-2'
+[32msection_end:1698915562:setup_target_workspace
+[0K[32m'setup_target_workspace' returned with code '0' after 0 min 0 sec[0m
+
+section_start:1698915562:install_target_dependencies[collapsed=true]
+[0K[34minstall_target_dependencies[0m
+
+[1m$ ( source /opt/ros/rolling/setup.bash && rosdep install -q --from-paths /root/target_ws/src --ignore-src -y | grep -E '(executing command)|(Setting up)' ; )[0m
+[32msection_end:1698915563:install_target_dependencies
+[0K[32m'install_target_dependencies' returned with code '0' after 0 min 1 sec[0m
+
+section_start:1698915563:build_target_workspace[collapsed=true]
+[0K[34mbuild_target_workspace[0m
+
+[1m$ ( source /opt/ros/rolling/setup.bash && cd /root/target_ws && colcon build --event-handlers desktop_notification- status- terminal_title- --cmake-args -DENABLE_COVERAGE_TESTING=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON; )[0m
+Starting >>> spot_arm_status
+--- stderr: spot_arm_status
+/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+---
+Finished <<< spot_arm_status [2.00s]
+
+Summary: 1 package finished [3.02s]
+  1 package had stderr output: spot_arm_status
+[32msection_end:1698915568:build_target_workspace
+[0K[32m'build_target_workspace' returned with code '0' after 0 min 4 sec[0m
+
+section_start:1698915568:run_target_test[collapsed=true]
+[0K[34mrun_target_test[0m
+
+[1m$ ( source /opt/ros/rolling/setup.bash && cd /root/target_ws && colcon test --event-handlers desktop_notification- status- terminal_title- console_cohesion+ --executor sequential --ctest-args -j1; )[0m
+Starting >>> spot_arm_status
+--- output: spot_arm_status
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+cachedir: /root/target_ws/build/spot_arm_status/.pytest_cache
+rootdir: /root/target_ws/src/ros-2-spot-arm-status-2
+plugins: ament-xmllint-0.16.0, ament-flake8-0.16.0, ament-lint-0.16.0, launch-testing-ros-0.26.2, ament-pep257-0.16.0, ament-copyright-0.16.0, launch-testing-3.2.0, cov-3.0.0, colcon-core-0.15.0
+collected 3 items
+
+test/test_copyright.py s                                                 [ 33%]
+test/test_flake8.py F                                                    [ 66%]
+test/test_pep257.py .                                                    [100%]
+
+=================================== FAILURES ===================================
+_________________________________ test_flake8 __________________________________
+test/test_flake8.py:23: in test_flake8
+    assert rc == 0, \
+E   AssertionError: Found 15 code style errors / warnings:
+E     ./spot_arm_status/spot_arm_status_pub.py:9:26: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:12:13: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:13:13: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:14:13: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:15:13: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:16:13: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:17:13: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:18:13: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:31:25: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:33:65: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:34:67: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:52:33: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:55:56: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:58:17: Q000 Double quotes found but single quotes preferred
+E     ./spot_arm_status/spot_arm_status_pub.py:79:16: Q000 Double quotes found but single quotes preferred
+E   assert 1 == 0
+----------------------------- Captured stdout call -----------------------------
+
+./spot_arm_status/spot_arm_status_pub.py:9:26: Q000 Double quotes found but single quotes preferred
+        super().__init__("arm_gripper_status")
+                         ^
+
+./spot_arm_status/spot_arm_status_pub.py:12:13: Q000 Double quotes found but single quotes preferred
+            "arm_sh0",
+            ^
+
+./spot_arm_status/spot_arm_status_pub.py:13:13: Q000 Double quotes found but single quotes preferred
+            "arm_sh1",
+            ^
+
+./spot_arm_status/spot_arm_status_pub.py:14:13: Q000 Double quotes found but single quotes preferred
+            "arm_hr0",
+            ^
+
+./spot_arm_status/spot_arm_status_pub.py:15:13: Q000 Double quotes found but single quotes preferred
+            "arm_el0",
+            ^
+
+./spot_arm_status/spot_arm_status_pub.py:16:13: Q000 Double quotes found but single quotes preferred
+            "arm_el1",
+            ^
+
+./spot_arm_status/spot_arm_status_pub.py:17:13: Q000 Double quotes found but single quotes preferred
+            "arm_wr0",
+            ^
+
+./spot_arm_status/spot_arm_status_pub.py:18:13: Q000 Double quotes found but single quotes preferred
+            "arm_wr1",
+            ^
+
+./spot_arm_status/spot_arm_status_pub.py:31:25: Q000 Double quotes found but single quotes preferred
+            JointState, "joint_states", self.joint_state_callback, 1
+                        ^
+
+./spot_arm_status/spot_arm_status_pub.py:33:65: Q000 Double quotes found but single quotes preferred
+        self.arm_stowed_publisher = self.create_publisher(Bool, "arm_stowed", 1)
+                                                                ^
+
+./spot_arm_status/spot_arm_status_pub.py:34:67: Q000 Double quotes found but single quotes preferred
+        self.gripper_open_publisher = self.create_publisher(Bool, "gripper_open", 1)
+                                                                  ^
+
+./spot_arm_status/spot_arm_status_pub.py:52:33: Q000 Double quotes found but single quotes preferred
+        self.get_logger().debug(f"Received joint state: {msg}")
+                                ^
+
+./spot_arm_status/spot_arm_status_pub.py:55:56: Q000 Double quotes found but single quotes preferred
+            gripper_position = self.get_joint_position("arm_f1x", msg)
+                                                       ^
+
+./spot_arm_status/spot_arm_status_pub.py:58:17: Q000 Double quotes found but single quotes preferred
+                "This joint state does not contain the right joints - ignoring."
+                ^
+
+./spot_arm_status/spot_arm_status_pub.py:79:16: Q000 Double quotes found but single quotes preferred
+if __name__ == "__main__":
+               ^
+
+15    Q000 Double quotes found but single quotes preferred
+
+6 files checked
+15 errors
+
+'Q'-type errors: 15
+
+Checked files:
+
+* ./setup.py
+* ./test/test_copyright.py
+* ./test/test_flake8.py
+* ./test/test_pep257.py
+* ./spot_arm_status/spot_arm_status_pub.py
+* ./spot_arm_status/__init__.py
+----------------------------- Captured stderr call -----------------------------
+option --max-complexity: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+option --application-import-names: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+option --application-package-names: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+option --import-order-style: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+option --quotes: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+option --inline-quotes: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+option --multiline-quotes: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+option --docstring-quotes: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+----- generated xml file: /root/target_ws/build/spot_arm_status/pytest.xml -----
+=========================== short test summary info ============================
+FAILED test/test_flake8.py::test_flake8 - AssertionError: Found 15 code style...
+============== 1 failed, 1 passed, 1 skipped, 2 warnings in 0.52s ==============
+=============================== warnings summary ===============================
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+  Warning: SelectableGroups dict interface is deprecated. Use select.
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+---
+Finished <<< spot_arm_status [1.52s]	[ with test failures ]
+--- stderr: spot_arm_status
+=============================== warnings summary ===============================
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+  Warning: SelectableGroups dict interface is deprecated. Use select.
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+---
+
+Summary: 1 package finished [2.52s]
+  1 package had stderr output: spot_arm_status
+  1 package had test failures: spot_arm_status
+[32msection_end:1698915571:run_target_test
+[0K[32m'run_target_test' returned with code '0' after 0 min 3 sec[0m
+
+[1m$ ( source /opt/ros/rolling/setup.bash && cd /root/target_ws && colcon test-result --verbose; )[0m
+build/spot_arm_status/pytest.xml: 3 tests, 0 errors, 1 failure, 1 skipped
+- spot_arm_status.test.test_flake8 test_flake8
+  <<< failure message
+    AssertionError: Found 15 code style errors / warnings:
+      ./spot_arm_status/spot_arm_status_pub.py:9:26: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:12:13: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:13:13: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:14:13: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:15:13: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:16:13: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:17:13: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:18:13: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:31:25: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:33:65: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:34:67: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:52:33: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:55:56: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:58:17: Q000 Double quotes found but single quotes preferred
+      ./spot_arm_status/spot_arm_status_pub.py:79:16: Q000 Double quotes found but single quotes preferred
+    assert 1 == 0
+  >>>
+
+Summary: 3 tests, 0 errors, 1 failure, 1 skipped
+section_end:1698915573:step_script
+[0Ksection_start:1698915573:after_script
+[0K[0K[36;1mRunning after_script[0;m[0;m
+[32;1mRunning after script...[0;m
+[32;1m$ ${HOME}/ci_scripts/catkin_build_scripts/python_coverage.sh "/root/target_ws/build" || true[0;m
+No data to combine
+No data to report.
+[32;1m$ ${HOME}/ci_scripts/catkin_build_scripts/combine_coverage.sh "/root/target_ws" || true[0;m
+No data to report.
+/root/ci_scripts/catkin_build_scripts/combine_coverage.sh: line 21: 0 + : syntax error: operand expected (error token is "+ ")
+/root/ci_scripts/catkin_build_scripts/combine_coverage.sh: line 22: 0 + : syntax error: operand expected (error token is "+ ")
+------------------------------------------------------------------------------
+                           GCC Code Coverage Report
+Directory: /root/target_ws
+------------------------------------------------------------------------------
+File                                       Lines    Exec  Cover   Missing
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+TOTAL                                          0       0    --%
+------------------------------------------------------------------------------
+There are no statements and therefore no code coverage.
+[32;1m$ gcovr --xml-pretty --exclude-unreachable-branches -o coverage_cpp.xml -e ".*test/.*" -e ".*devel/.*" -e ".*tests/.*" --root /root/target_ws || true[0;m
+[32;1m$ cp -r /root/target_ws/build ./build[0;m
+section_end:1698915575:after_script
+[0Ksection_start:1698915575:upload_artifacts_on_failure
+[0K[0K[36;1mUploading artifacts for failed job[0;m[0;m
+[32;1mUploading artifacts...[0;m
+build/**/*pytest.xml: found 1 matching artifact files and directories[0;m 
+[0;33mWARNING: build/**/*.xunit.xml: no matching files. Ensure that the artifact path is relative to the working directory (/builds/sq411/ros-2-spot-arm-status-2)[0;m 
+Uploading artifacts as "junit" to coordinator... 201 Created[0;m  id[0;m=465336 responseStatus[0;m=201 Created token[0;m=64_dqTC9
+[32;1mUploading artifacts...[0;m
+coverage_*.xml: found 1 matching artifact files and directories[0;m 
+Uploading artifacts as "cobertura" to coordinator... 201 Created[0;m  id[0;m=465336 responseStatus[0;m=201 Created token[0;m=64_dqTC9
+section_end:1698915577:upload_artifacts_on_failure
+[0Ksection_start:1698915577:cleanup_file_variables
+[0K[0K[36;1mCleaning up project directory and file based variables[0;m[0;m
+section_end:1698915579:cleanup_file_variables
+[0K[31;1mERROR: Job failed: exit code 1
+[0;m
